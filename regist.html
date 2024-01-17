@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background:linear-gradient(to right,#0cfaf2, #66CDAA) #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .error {
+            color: red;
+            margin-top: -10px;
+            margin-bottom: 10px;
+        }
+
+        .success {
+            color: green;
+            margin-top: -10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<form id="registrationForm">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required>
+    <div class="error" id="usernameError"></div>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+    <div class="error" id="emailError"></div>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required>
+    <div class="error" id="passwordError"></div>
+
+    <label for="confirmPassword">Confirm Password:</label>
+    <input type="password" id="confirmPassword" name="confirmPassword" required>
+    <div class="error" id="confirmPasswordError"></div>
+
+    <label for="gender">Gender:</label>
+    <select id="gender" name="gender" required>
+        <option value="">Select Gender</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+    </select>
+    <div class="error" id="genderError"></div>
+
+    <label for="birthday">Birthday:</label>
+    <input type="date" id="birthday" name="birthday" required>
+    <div class="error" id="birthdayError"></div>
+
+    <button type="button" onclick="validateForm()">Register</button>
+    <div class="success" id="successMessage"></div>
+</form>
+
+<script>
+    function validateForm() {
+        var username = document.getElementById("username").value;
+        var email = document.getElementById("email").value;
+        var password = document.getElementById("password").value;
+        var confirmPassword = document.getElementById("confirmPassword").value;
+        var gender = document.getElementById("gender").value;
+        var birthday = document.getElementById("birthday").value;
+
+        // Simple validation - checking if fields are not empty
+        if (username === "") {
+            document.getElementById("usernameError").innerText = "Username is required.";
+        } else {
+            document.getElementById("usernameError").innerText = "";
+        }
+
+        if (email === "") {
+            document.getElementById("emailError").innerText = "Email is required.";
+        } else {
+            document.getElementById("emailError").innerText = "";
+        }
+
+        if (password === "") {
+            document.getElementById("passwordError").innerText = "Password is required.";
+        } else {
+            document.getElementById("passwordError").innerText = "";
+        }
+
+        if (confirmPassword === "") {
+            document.getElementById("confirmPasswordError").innerText = "Confirm Password is required.";
+        } else if (password !== confirmPassword) {
+            document.getElementById("confirmPasswordError").innerText = "Passwords do not match. Please try again.";
+        } else {
+            document.getElementById("confirmPasswordError").innerText = "";
+        }
+
+        if (gender === "") {
+            document.getElementById("genderError").innerText = "Gender is required.";
+        } else {
+            document.getElementById("genderError").innerText = "";
+        }
+
+        if (birthday === "") {
+            document.getElementById("birthdayError").innerText = "Birthday is required.";
+        } else {
+            document.getElementById("birthdayError").innerText = "";
+        }
+
+        // If all fields are valid, show success message and redirect
+        if (
+            username !== "" &&
+            email !== "" &&
+            password !== "" &&
+            confirmPassword !== "" &&
+            password === confirmPassword &&
+            gender !== "" &&
+            birthday !== ""
+        ) {
+            document.getElementById("successMessage").innerText = "Thank you! You can log in now.";
+            // Redirect to main page or perform additional actions
+            setTimeout(function() {
+                window.location.href = "Login.html";
+            }, 2000); // Redirect after 2 seconds (2000 milliseconds)
+        }
+    }
+</script>
+
+</body>
+</html>
